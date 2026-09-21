@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Swampus · Campus Peer-to-Peer Rental Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- =========================================================
+       GLOBAL NAVIGATION BAR
+       ========================================================= -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand-logo-wrap" id="nav-brand-link">
+        <div class="brand-icon">
+          <img src="assets/logo.jpg" alt="Swampus Duck Mascot">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">swampus</span>
+          <span class="brand-tagline">stuff • people • campus</span>
+        </div>
+      </div>
+
+      <div class="nav-campus-badge">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"/>
+        </svg>
+        <span>State University • All Quads</span>
+      </div>
+
+      <nav class="nav-links">
+        <button class="nav-btn" data-nav-target="market-view">
+          <span>🛍️</span>
+          <span>Marketplace</span>
+        </button>
+
+        <button class="nav-btn active" data-nav-target="user-view">
+          <span>🎒</span>
+          <span>My Locker</span>
+        </button>
+
+        <button class="nav-btn" data-nav-target="messages-view">
+          <span>💬</span>
+          <span>Messages</span>
+          <span class="nav-badge-count">3</span>
+        </button>
+
+        <button class="nav-btn" data-nav-target="login-view">
+          <span>🔑</span>
+          <span>Login / Auth</span>
+        </button>
+
+        <button class="nav-btn nav-cta" id="btn-nav-add-item">
+          <span>+</span>
+          <span>List Item</span>
+        </button>
+
+        <div class="user-nav-profile" id="nav-user-profile-btn" title="View Student Profile">
+          <div class="user-avatar-sm">A</div>
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--forest);">Alex</span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       APPLICATION MAIN CONTAINER
+       ========================================================= -->
+  <main class="app-main">
+
+    <!-- =======================================================
+         VIEW 1: LOGIN / AUTHENTICATION PAGE
+         ======================================================= -->
+    <section id="login-view" class="app-view">
+      <div class="login-grid">
+        <!-- Left: Official Mascot & Campus Mission -->
+        <div class="login-brand-panel">
+          <img src="assets/logo.jpg" alt="Swampus duck in a cap holding books: share, borrow, learn, together">
+          
+          <div class="login-trust-points">
+            <span class="trust-chip">🎓 .edu Verified Only</span>
+            <span class="trust-chip">🤝 Safe Dorm Pickup</span>
+            <span class="trust-chip">🛡️ Zero-Hassle Escrow</span>
+          </div>
+
+          <p style="font-size: 0.88rem; color: var(--muted); margin-top: 1.25rem; max-width: 380px;">
+            Connecting roommates, dorm neighbors, and classmates to rent everyday college gear without buying new.
+          </p>
+        </div>
+
+        <!-- Right: Sign-In Form -->
+        <div class="login-form-panel">
+          <div class="login-card">
+            <div class="login-header">
+              <h1>Sign in to Swampus</h1>
+              <p>Borrow and lend with students across your campus.</p>
+            </div>
+
+            <form id="app-login-form" novalidate>
+              <div class="field">
+                <label for="login-campus">Campus Location</label>
+                <select id="login-campus">
+                  <option value="main">State University (Main Quad & Dorms)</option>
+                  <option value="north">North Campus Science Complex</option>
+                  <option value="south">South Quad Residential Halls</option>
+                  <option value="arts">Off-Campus Commons & Greek Row</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="login-email">College Email (.edu)</label>
+                <input id="login-email" type="email" placeholder="alex.rivera@campus.edu" required>
+                <div class="field-error" id="login-email-error"></div>
+              </div>
+
+              <div class="field">
+                <label for="login-password">Password</label>
+                <div class="input-wrap">
+                  <input id="login-password" type="password" placeholder="••••••••" required>
+                  <button type="button" class="toggle-pwd" id="toggle-login-pass">Show</button>
+                </div>
+                <div class="field-error" id="login-password-error"></div>
+              </div>
+
+              <div class="login-extra-row">
+                <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
+                  <input type="checkbox" checked> Remember me
+                </label>
+                <a href="#">Forgot password?</a>
+              </div>
+
+              <button type="submit" class="btn-block btn-primary">Sign in to Campus</button>
+            </form>
+
+            <div class="divider-or">or</div>
+
+            <button class="btn-block btn-secondary" onclick="showToast('Campus SSO authorization connected (Demo).')">
+              <svg width="18" height="18" viewBox="0 0 18 18">
+                <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
+                <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/>
+                <path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/>
+                <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/>
+              </svg>
+              Sign in with College Google Account
+            </button>
+
+            <!-- Quick Demo Login -->
+            <div class="demo-login-box">
+              <p>💡 Want to explore the app right away?</p>
+              <button type="button" class="btn-demo" id="btn-demo-login">
+                1-Click Demo Login (as Student Alex Rivera)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         VIEW 2: USER PROFILE & CAMPUS LOCKER PAGE
+         ======================================================= -->
+    <section id="user-view" class="app-view active-view">
+      <div class="user-page-container">
+        
+        <!-- Student Header Card -->
+        <div class="profile-card">
+          <div class="profile-avatar-lg">
+            <span>A</span>
+            <div class="avatar-online-dot" title="Active on campus"></div>
+          </div>
+
+          <div class="profile-info">
+            <h2>
+              <span>Alex Rivera</span>
+              <span class="verified-badge">✓ .edu Verified</span>
+            </h2>
+            <div class="profile-details">
+              <span class="profile-detail-item">🏫 Computer Science '26</span>
+              <span class="profile-detail-item">📍 Maple Hall, Rm 304</span>
+              <span class="profile-detail-item">✉️ alex.rivera@campus.edu</span>
+            </div>
+            <div class="profile-reputation">
+              <span class="star-icon">★</span>
+              <span><strong>4.9</strong> (28 ratings)</span>
+              <span style="color: var(--line);">•</span>
+              <span style="color: var(--success); font-weight: 700;">100% On-Time Returns</span>
+              <span style="color: var(--line);">•</span>
+              <span>Campus Member since Fall '24</span>
+            </div>
+          </div>
+
+          <div class="profile-actions">
+            <button class="btn-primary" id="btn-open-list-modal" style="padding: 0.65rem 1.25rem; font-size: 0.95rem; border-radius: var(--radius-md);">
+              + Post New Item
+            </button>
+            <button class="btn-secondary" id="btn-user-logout" style="padding: 0.55rem 1rem; font-size: 0.85rem; border-radius: var(--radius-md);">
+              Sign Out
+            </button>
+          </div>
+        </div>
+
+        <!-- Four Stats Widgets -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🎒</div>
+            <div class="stat-meta">
+              <h4 id="stat-borrow-count">2</h4>
+              <p>Borrowing Now</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">📦</div>
+            <div class="stat-meta">
+              <h4 id="stat-lend-count">3</h4>
+              <p>Items Listed</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">💵</div>
+            <div class="stat-meta">
+              <h4 id="stat-earn-count">$215</h4>
+              <p>Semester Earned</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">🌱</div>
+            <div class="stat-meta">
+              <h4 id="stat-karma-count">98%</h4>
+              <p>Campus Karma</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Locker Tabs & Sections -->
+        <div>
+          <div class="locker-nav-tabs">
+            <button class="locker-tab active" data-locker-tab="borrowing">
+              <span>Currently Borrowing</span>
+              <span class="tab-counter">2</span>
+            </button>
+            <button class="locker-tab" data-locker-tab="listings">
+              <span>My Items (Lending Out)</span>
+              <span class="tab-counter">3</span>
+            </button>
+            <button class="locker-tab" data-locker-tab="requests">
+              <span>Rental Requests</span>
+              <span class="tab-counter" id="req-tab-badge">1</span>
+            </button>
+          </div>
+
+          <!-- Tab 1: Borrowing -->
+          <div id="panel-borrowing" class="locker-panel active-panel">
+            <div class="rentals-list" id="borrowings-container">
+              <!-- Populated dynamically via app.js -->
+            </div>
+          </div>
+
+          <!-- Tab 2: My Listings -->
+          <div id="panel-listings" class="locker-panel">
+            <div class="rentals-list" id="listings-container">
+              <!-- Populated dynamically via app.js -->
+            </div>
+          </div>
+
+          <!-- Tab 3: Rental Requests -->
+          <div id="panel-requests" class="locker-panel">
+            <div class="rentals-list" id="requests-container">
+              <!-- Populated dynamically via app.js -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================
+         VIEW 3: MESSAGES & MEETUP CHAT PAGE
+         ======================================================= -->
+    <section id="messages-view" class="app-view">
+      <div class="messages-layout">
+        
+        <!-- Left Column: Inbox List -->
+        <div class="inbox-sidebar">
+          <div class="inbox-header">
+            <h2>
+              <span>Rental Chats</span>
+              <span class="verified-badge">Campus Only</span>
+            </h2>
+            <div class="inbox-search">
+              <input type="text" placeholder="Search conversations...">
+            </div>
+          </div>
+
+          <div class="inbox-threads-list" id="inbox-threads-container">
+            <!-- Populated dynamically via app.js -->
+          </div>
+        </div>
+
+        <!-- Right Column: Active Conversation -->
+        <div class="chat-window">
+          
+          <!-- Contextual Item Header -->
+          <div class="chat-context-header">
+            <div class="chat-item-card">
+              <div class="chat-item-thumb" id="chat-header-item-thumb">🧮</div>
+              <div>
+                <div class="chat-item-title" id="chat-header-item-title">TI-84 Plus CE Graphing Calculator</div>
+                <div class="chat-item-sub" id="chat-header-item-sub">$4/day • with Jordan Hayes (Oak Hall #204)</div>
+              </div>
+            </div>
+
+            <div class="chat-header-actions">
+              <span class="badge-status badge-active" id="chat-header-status-badge">Active Rental</span>
+            </div>
+          </div>
+
+          <!-- Safe Meetup Helper Bar -->
+          <div class="meetup-helper-bar">
+            <span class="meetup-label">📍 Safe Meetups:</span>
+            <button class="meetup-chip" data-location="Main Library Front Desk">🏛️ Library Desk</button>
+            <button class="meetup-chip" data-location="Student Union Starbucks">☕ Student Union</button>
+            <button class="meetup-chip" data-location="Science Complex Atrium">🔬 Science Atrium</button>
+            <button class="meetup-chip" data-location="Maple Hall Dorm Desk">🚪 Maple Hall Lobby</button>
+            <button class="meetup-chip" data-location="North Quad Benches">🌳 North Quad</button>
+          </div>
+
+          <!-- Messages Stream -->
+          <div class="chat-messages-container" id="chat-messages-stream">
+            <!-- Messages populated via app.js -->
+          </div>
+
+          <!-- Chat Input Bar -->
+          <div class="chat-input-bar">
+            <input type="text" id="chat-message-input" placeholder="Type a message or suggest a pickup time..." autocomplete="off">
+            <button class="btn-send" id="btn-send-message">
+              <span>Send</span>
+              <span>✈️</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================
+         VIEW 4: MARKETPLACE / CAMPUS FEED
+         ======================================================= -->
+    <section id="market-view" class="app-view">
+      
+      <!-- Marketplace Banner -->
+      <div class="market-hero">
+        <div class="market-hero-content">
+          <h1>Borrow whatever you need on campus.</h1>
+          <p>Textbooks, graphing calculators, cameras, dorm projectors, and camping gear from students in your quad.</p>
+          <div class="market-search-box">
+            <input type="text" id="market-search-input" placeholder="Search by item name, dorm hall, or course code...">
+            <button type="button">Search</button>
+          </div>
+        </div>
+
+        <div class="market-hero-duck">
+          <img src="assets/logo.jpg" alt="Swampus Mascot">
+        </div>
+      </div>
+
+      <!-- Category Filter Bar -->
+      <div class="category-filter-bar">
+        <button class="cat-btn active" data-category="all">✨ All Campus Items</button>
+        <button class="cat-btn" data-category="tech">🧮 Tech & Calculators</button>
+        <button class="cat-btn" data-category="cameras">📷 Camera & Audio</button>
+        <button class="cat-btn" data-category="dorm">📽️ Dorm & Living</button>
+        <button class="cat-btn" data-category="academic">🧪 Textbooks & Lab</button>
+        <button class="cat-btn" data-category="games">🎮 Games & Party</button>
+        <button class="cat-btn" data-category="sports">🚲 Sports & Travel</button>
+      </div>
+
+      <!-- Items Grid -->
+      <div class="items-grid" id="marketplace-grid">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       MODAL 1: RENT AN ITEM
+       ========================================================= -->
+  <div class="modal-backdrop" id="modal-rent-item">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Borrow Item from Student</h3>
+        <button class="btn-close-modal" data-close-modal>&times;</button>
+      </div>
+      <form id="form-confirm-rent">
+        <input type="hidden" id="rent-item-id">
+        <div class="modal-body">
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.25rem;">
+            <div id="rent-modal-icon" style="width: 60px; height: 60px; border-radius: var(--radius-sm); background: var(--mist); display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 1.5px solid var(--line);"></div>
+            <div>
+              <h4 id="rent-modal-title" style="font-size: 1.15rem; font-weight: 800; color: var(--forest);"></h4>
+              <p id="rent-modal-lender" style="font-size: 0.85rem; color: var(--muted);"></p>
+            </div>
+          </div>
+
+          <p id="rent-modal-desc" style="font-size: 0.9rem; color: var(--muted); margin-bottom: 1.25rem; background: var(--mist); padding: 0.75rem; border-radius: var(--radius-sm);"></p>
+
+          <div class="field">
+            <label for="rent-days-count">How many days do you need it?</label>
+            <input type="number" id="rent-days-count" min="1" max="30" value="3">
+          </div>
+
+          <div style="background: #fafbf8; border: 1.5px solid var(--line); border-radius: var(--radius-md); padding: 1rem; margin-top: 1rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.35rem;">
+              <span>Daily Rate:</span>
+              <strong id="rent-modal-price"></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.35rem;">
+              <span>Refundable Deposit:</span>
+              <strong id="rent-modal-deposit"></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 1.05rem; font-weight: 800; color: var(--forest); border-top: 1px dashed var(--line); padding-top: 0.5rem; margin-top: 0.5rem;">
+              <span>Estimated Cost:</span>
+              <span id="rent-total-calc" style="color: var(--moss);"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" data-close-modal style="padding: 0.6rem 1rem; border-radius: var(--radius-md);">Cancel</button>
+          <button type="submit" class="btn-primary" style="padding: 0.6rem 1.25rem; border-radius: var(--radius-md);">Request & Chat with Lender</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 2: LIST A NEW ITEM FOR RENT
+       ========================================================= -->
+  <div class="modal-backdrop" id="modal-list-item">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>List an Item on Swampus</h3>
+        <button class="btn-close-modal" data-close-modal>&times;</button>
+      </div>
+      <form id="form-list-new-item">
+        <div class="modal-body">
+          <div class="field">
+            <label for="new-item-title">Item Name</label>
+            <input type="text" id="new-item-title" placeholder="e.g. Sony A6400 Camera or Giant Jenga" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="field">
+              <label for="new-item-category">Category</label>
+              <select id="new-item-category">
+                <option value="tech">Tech & Calculators</option>
+                <option value="cameras">Camera & Audio</option>
+                <option value="dorm">Dorm & Living</option>
+                <option value="academic">Textbooks & Lab</option>
+                <option value="games">Games & Party</option>
+                <option value="sports">Sports & Travel</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="new-item-icon">Emoji Icon</label>
+              <select id="new-item-icon">
+                <option value="📦">📦 Box / General</option>
+                <option value="🧮">🧮 Calculator / Tech</option>
+                <option value="📷">📷 Camera</option>
+                <option value="📽️">📽️ Projector</option>
+                <option value="🧪">🧪 Science / Lab</option>
+                <option value="🎮">🎮 Gaming / Console</option>
+                <option value="🚲">🚲 Bike / Lock</option>
+                <option value="⛺">⛺ Camping / Tent</option>
+                <option value="🎓">🎓 Graduation Cap</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="field">
+              <label for="new-item-price">Daily Price ($)</label>
+              <input type="number" id="new-item-price" min="1" value="5" required>
+            </div>
+            <div class="field">
+              <label for="new-item-deposit">Security Deposit ($)</label>
+              <input type="number" id="new-item-deposit" min="0" value="25">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="new-item-desc">Description & Accessories Included</label>
+            <textarea id="new-item-desc" rows="3" placeholder="Condition, cables included, instructions for borrower..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" data-close-modal style="padding: 0.6rem 1rem; border-radius: var(--radius-md);">Cancel</button>
+          <button type="submit" class="btn-primary" style="padding: 0.6rem 1.25rem; border-radius: var(--radius-md);">Publish to Campus</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
