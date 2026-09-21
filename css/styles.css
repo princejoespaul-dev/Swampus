@@ -1,0 +1,3 @@
+/* Vercel compatibility stylesheet: index.html references css/styles.css,
+   while the actual stylesheet lives at the repository root. */
+@import url("../styles.css");
